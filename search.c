@@ -26,10 +26,3 @@ resultTree* search(int key, Node* root) {
     return search(key, root->child_pointer[i + 1]);
   }
 }
-
-//used in search
-resultTree* initResultNode() {
-  resultTree* temp = (resultTree*)malloc(sizeof(resultTree));
-  temp->res = NULL;
-  return temp;
-}

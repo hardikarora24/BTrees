@@ -6,6 +6,7 @@
 #include "globals.c"
 #include "dataTypes.c"
 #include "prototypes.c"
+#include "initializers.c"
 #include "insert.c"
 #include "delete.c"
 #include "printBtree.c"
