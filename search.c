@@ -1,33 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-//searching -------------------------------------
-//search for an element in btree
-resultTree* search(int key, Node* nodet) {
+resultTree* search(int key, Node* root) {
   int i;
-  i = nodet->net_key - 1;
-
-  while (i >= 0 && (key < nodet->key_value[i])) {
+  i = root->net_key - 1;
+  while (i >= 0 && (key < root->key_value[i])) {
     i--;
   }
 
-  if (i >= 0 && key == nodet->key_value[i]) {
-    resultTree* re_node = get_result_node();
-    re_node->res = nodet;
+  if (i >= 0 && key == root->key_value[i]) {
+    resultTree* re_node = initResultNode();
+    re_node->res = root;
     re_node->pos = i;
     re_node->found = true;
     return re_node;
   }
 
-  if (nodet->leaf) {
-    resultTree* re_node = get_result_node();
+  if (root->leaf) {
+    resultTree* re_node = initResultNode();
     re_node->found = false;
     return re_node;
   }
 
   else {
-    return search(key, nodet->child_pointer[i + 1]);
+    return search(key, root->child_pointer[i + 1]);
   }
 }
-//search end------------------------
+
+//used in search
+resultTree* initResultNode() {
+  resultTree* temp = (resultTree*)malloc(sizeof(resultTree));
+  temp->res = NULL;
+  return temp;
+}

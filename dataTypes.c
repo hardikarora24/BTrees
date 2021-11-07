@@ -7,7 +7,7 @@ typedef short bool;
 typedef struct Node Node;
 struct Node {
   int net_key;
-  int key_value[POINTER];
+  int key_value[KEY];
   Node* child_pointer[POINTER];
   bool leaf;
 };
@@ -57,11 +57,5 @@ Node* Node_init() {
   return newNode;
 }
 
-//used in search
-resultTree* get_result_node() {
-  resultTree* neww = (resultTree*)malloc(sizeof(resultTree));
-  neww->res = NULL;
-  return neww;
-}
 
 

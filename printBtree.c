@@ -5,10 +5,10 @@
 //priting btree using queue----------------------
 
 //printing btree
-void print_node(Node* noode) {
+void print_node(Node* iterator) {
   Queue qu;
   init(&qu);
-  push(&qu, noode);
+  push(&qu, iterator);
   while (!empty(&qu)) {
     int count = qu.size;
     printf("|| ");

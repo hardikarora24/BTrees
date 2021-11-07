@@ -7,7 +7,7 @@ void insert(int key, btree* nodet);
 void print_node(Node* noode);
 resultTree* search(int key, Node* nodet);
 Node* remove_key(Node* nodet, int key);
-resultTree* get_result_node();
+resultTree* initResultNode();
 Node* Node_init();
 Node* split_node(Node* parent, Node* to_split);
 Node* non_full_insert(int key, Node* nodet);
