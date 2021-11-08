@@ -1,60 +1,56 @@
-
-//inserting in btree ---------------------------
-
-//insert in a btree
-void insert(int key, btree* nodet) {
-  resultTree* iterator = search(key, nodet->root);
+void insert(int key, btree* myTree) {
+  resultTree* iterator = search(key, myTree->root);
   if (iterator->found == true) {
     printf(" already exists ");
     return;
   }
-  Node* root = nodet->root;
+  Node* root = myTree->root;
 
   if (root->net_key == KEY) {
     Node* new_root = Node_init();
     new_root->leaf = false;
     new_root = split_node(new_root, root);
-    nodet->root = new_root;
-    nodet->root = non_full_insert(key, nodet->root);
+    myTree->root = new_root;
+    myTree->root = non_full_insert(key, myTree->root);
   }
   else {
-    nodet->root = non_full_insert(key, nodet->root);
+    myTree->root = non_full_insert(key, myTree->root);
   }
 }
 
 //insert in btree when node is not full
-Node* non_full_insert(int key, Node* nodet) {
-  if (nodet->leaf == true) {
+Node* non_full_insert(int key, Node* myTree) {
+  if (myTree->leaf == true) {
     // insert in right place
-    int i = nodet->net_key;
-    while (nodet->key_value[i - 1] > key && i > 0) {
-      nodet->key_value[i] = nodet->key_value[i - 1];
+    int i = myTree->net_key;
+    while (myTree->key_value[i - 1] > key && i > 0) {
+      myTree->key_value[i] = myTree->key_value[i - 1];
       i--;
     }
-    nodet->key_value[i] = key;
-    nodet->net_key++;
-    return nodet;
+    myTree->key_value[i] = key;
+    myTree->net_key++;
+    return myTree;
   }
 
   else {
-    int i = nodet->net_key - 1;
-    while (nodet->key_value[i] > key && i >= 0) {
+    int i = myTree->net_key - 1;
+    while (myTree->key_value[i] > key && i >= 0) {
       i--;
     }
 
-    if (nodet->child_pointer[i + 1]->net_key == KEY) {
-      nodet = split_node(nodet, nodet->child_pointer[i + 1]);
-      if (key > nodet->key_value[i + 1]) i = i + 1;
-      nodet->child_pointer[i + 1] =
-        non_full_insert(key, nodet->child_pointer[i + 1]);
+    if (myTree->child_pointer[i + 1]->net_key == KEY) {
+      myTree = split_node(myTree, myTree->child_pointer[i + 1]);
+      if (key > myTree->key_value[i + 1]) i = i + 1;
+      myTree->child_pointer[i + 1] =
+        non_full_insert(key, myTree->child_pointer[i + 1]);
     }
 
     else {
-      nodet->child_pointer[i + 1] =
-        non_full_insert(key, nodet->child_pointer[i + 1]);
+      myTree->child_pointer[i + 1] =
+        non_full_insert(key, myTree->child_pointer[i + 1]);
     }
   }
-  return nodet;
+  return myTree;
 }
 
 //spliting node in btree
@@ -104,5 +100,3 @@ Node* split_node(Node* parentNode, Node* target) {
   parentNode->net_key++;
   return parentNode;
 }
-
-//inserting end----------------------------------------

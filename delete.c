@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "globals.c"
 
-//used in delete
 int get_pred(int pos, Node* nodet) {
   Node* pred = nodet->child_pointer[pos];
 
@@ -13,7 +12,6 @@ int get_pred(int pos, Node* nodet) {
   return pred->key_value[pred->net_key - 1];
 }
 
-//used in delete
 int get_succ(int pos, Node* nodet) {
   Node* suc = nodet->child_pointer[pos + 1];
 
@@ -24,7 +22,6 @@ int get_succ(int pos, Node* nodet) {
   return suc->key_value[0];
 }
 
-//used in delete
 Node* rem_from_leaf(int key, Node* nodet, int pos) {
   int i = pos;
 
@@ -37,7 +34,6 @@ Node* rem_from_leaf(int key, Node* nodet, int pos) {
   return nodet;
 }
 
-//used in delete
 Node* rem_from_int(int key, Node* nodet, int pos) {
   if (nodet->child_pointer[pos]->net_key >= t) {
     int pred = get_pred(pos, nodet);
@@ -60,7 +56,6 @@ Node* rem_from_int(int key, Node* nodet, int pos) {
   return nodet;
 }
 
-//used in delete
 Node* borrow_from_left(Node* nodet, int pos) {
   int from_parrent;
   int from_left;
@@ -93,7 +88,6 @@ Node* borrow_from_left(Node* nodet, int pos) {
   return nodet;
 }
 
-//used in delete
 Node* merge(Node* nodet, int pos) {
   Node* merged_child = Node_init();
 
@@ -141,7 +135,6 @@ Node* merge(Node* nodet, int pos) {
 }
 
 
-//used in delete
 Node* borrow_from_right(Node* nodet, int pos) {
   // key form parent
   int from_parent;
@@ -175,7 +168,6 @@ Node* borrow_from_right(Node* nodet, int pos) {
 }
 
 
-//deleting a node
 Node* remove_key(Node* nodet, int key) {
   int i = 0;
   while (nodet->key_value[i] < key && i < nodet->net_key) {
@@ -231,7 +223,6 @@ Node* remove_key(Node* nodet, int key) {
             nodet = merge(nodet, i);
           }
         }
-
         //   a a   a   a
         //  b b |b| |b| b
         nodet = remove_key(nodet, key);

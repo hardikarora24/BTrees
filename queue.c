@@ -13,8 +13,6 @@ void init(Queue* queue) {
   queue->size = 0;
 }
 
-
-
 //checks if a queue is empty
 bool empty(Queue* queue) { return (queue->HEAD == NULL); }
 
