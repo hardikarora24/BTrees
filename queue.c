@@ -4,6 +4,7 @@ __Node* _createNode(Node* node) {
   __Node* _node = (__Node*)malloc(sizeof(__Node));
   _node->val = node;
   _node->NEXT = NULL;
+  return _node;
 }
 
 //queue initialiser
