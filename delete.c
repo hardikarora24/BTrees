@@ -176,7 +176,7 @@ Node* remove_key(Node* nodet, int key) {
 
   //   if key is found
   if (i < nodet->net_key && nodet->key_value[i] == key) {
-    printf("found\n");
+    printf("deleting\n");
     if (nodet->leaf) {
       nodet = rem_from_leaf(key, nodet, i);
     }
@@ -185,7 +185,7 @@ Node* remove_key(Node* nodet, int key) {
     }
   }
   else {
-    printf("not in this node \n");
+    //printf("not in this node \n");
     // if node is a leaf node
     if (nodet->leaf) {
       printf(" key not present\n");
